@@ -25,6 +25,18 @@ export class PillowService {
         return await this.pillowModel.find({ stresState: stressRate }).exec();
     }
 
+    async findBySnoringRange(min: number, max: number): Promise<Pillow[]> {
+        return await this.pillowModel.find({ snoringRange: { $gte: min, $lte: max } }).exec();
+    }
+
+    async findByRespirationRate(min: number, max: number): Promise<Pillow[]> {
+        return await this.pillowModel.find({ respirationRate: { $gte: min, $lte: max } }).exec();
+    }
+
+    async findByHeartRate(min: number, max: number): Promise<Pillow[]> {
+        return await this.pillowModel.find({ heartRate: { $gte: min, $lte: max } }).exec();
+    }
+
     async update(id: string, data: any): Promise<Pillow> {
         return await this.pillowModel.findByIdAndUpdate(id, data, { new: true });
     }
