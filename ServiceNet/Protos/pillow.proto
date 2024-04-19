@@ -3,6 +3,8 @@ import "google/protobuf/empty.proto";
 
 option csharp_namespace = "ServiceNet";
 
+package pillow;
+
 service Pillow{
     rpc GetDatas(Empty) returns (Datas);
     rpc GetData(DataID) returns (Data);
@@ -13,18 +15,20 @@ service Pillow{
     rpc AddData(DataDto) returns (Empty);
     rpc UpdateData(Data) returns (Data);
     rpc DeleteData(DataID) returns (Empty);
+    rpc GetAvgHeartRate(Empty) returns (AvgHeartRate);
+    rpc GetAvgStressLevel(Empty) returns (AvgStressLevel);
 }
 
 message DataDto {
-  double snoringRange = 1;
-  double respirationRate = 2;
-  double bodyTemperature = 3;
-  double limbMovement = 4;
-  double bloodOxygen = 5;
-  double rem = 6;
-  double hoursSleeping = 7;
-  double heartRate = 8;
-  double stresState = 9;
+  string snoringRange = 1;
+  string respirationRate = 2;
+  string bodyTemperature = 3;
+  string limbMovement = 4;
+  string bloodOxygen = 5;
+  string rem = 6;
+  string hoursSleeping = 7;
+  string heartRate = 8;
+  string stresState = 9;
 }
 
 message ParamsToFind{
@@ -42,19 +46,31 @@ message DataID{
 
 message Data {
     string _id=1;
-    double snoringRange = 2;
-    double respirationRate = 3;
-    double bodyTemperature = 4;
-    double limbMovement = 5;
-    double bloodOxygen = 6;
-    double rem = 7;
-    double hoursSleeping = 8;
-    double heartRate = 9;
-    double stresState = 10;
+    string snoringRange = 2;
+    string respirationRate = 3;
+    string bodyTemperature = 4;
+    string limbMovement = 5;
+    string bloodOxygen = 6;
+    string rem = 7;
+    string hoursSleeping = 8;
+    string heartRate = 9;
+    string stresState = 10;
   }
 
   message Empty{};
 
   message Datas{
     repeated Data datas = 1;
+  }
+  message ResponseCode{
+    int32 status=1;
+    string text=2;
+  }
+
+  message AvgHeartRate{
+    double avgHeartRate=1;
+  }
+
+  message AvgStressLevel{
+    double avgStressLevel=1;
   }

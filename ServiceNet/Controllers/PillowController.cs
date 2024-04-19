@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ServiceNet.Services;
 
 namespace ServiceNet.Controllers
 {
@@ -6,29 +7,57 @@ namespace ServiceNet.Controllers
     [Route("[controller]")]
     public class PillowController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        private readonly PillowService _pillowService;
 
         private readonly ILogger<PillowController> _logger;
 
         public PillowController(ILogger<PillowController> logger)
         {
             _logger = logger;
+            _pillowService = PillowService.Instance;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        //[Route("GetOne")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpPost("AddData")]
+        public async Task<IActionResult> AddData([FromBody] DataDto request)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            await _pillowService.AddData(request);
+            return Ok();
         }
+
+        [HttpDelete("DeleteData")]
+        public async Task<IActionResult> DeleteData([FromBody] DataID request)
+        {
+            await _pillowService.DeleteData(request);
+            return Ok();
+        }
+
+        [HttpGet("GetAvgHeartRate")]
+        public async Task<IActionResult> GetAvgHeartRate()
+        {
+            var result = await _pillowService.GetAvgHeartRate(new Empty());
+            return Ok(result);
+        }
+
+        [HttpGet("GetAvgStressLevel")]
+        public async Task<IActionResult> GetAvgStressLevel()
+        {
+            var result = await _pillowService.GetAvgStressLevel(new Empty());
+            return Ok(result);
+        }
+
+        [HttpGet("GetData")]
+        public async Task<IActionResult> GetData([FromBody] DataID request)
+        {
+            var result = await _pillowService.GetData(request);
+            return Ok(result);
+        }
+
+        [HttpGet("GetDatas")]
+        public async Task<IActionResult> GetDatas()
+        {
+            var result = await _pillowService.GetDatas(new Empty());
+            return Ok(result);
+        }
+
     }
 }

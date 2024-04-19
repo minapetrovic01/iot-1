@@ -22,7 +22,7 @@ export class PillowService {
         const createdPillow = new this.pillowModel(data);
         let pillow = await createdPillow.save();
         let dataToReturn:Data={
-            _id: pillow._id,
+            _id: pillow._id.toString(),
             snoringRange: pillow.snoringRange.toString(),
             respirationRate: pillow.respirationRate.toString(),
             bodyTemperature: pillow.bodyTemperature.toString(),
@@ -41,7 +41,7 @@ export class PillowService {
         let dbResult = await this.pillowModel.find().exec();
         dbResult.forEach((element) => {
             let data: Data = {
-                _id: element._id,
+                _id: element._id.toString(),
                 snoringRange: element.snoringRange.toString(),
                 respirationRate: element.respirationRate.toString(),
                 bodyTemperature: element.bodyTemperature.toString(),
@@ -61,7 +61,7 @@ export class PillowService {
     async findOne(id: DataID): Promise<Data> {
         let dbResult = await this.pillowModel.findById(id._id).exec();
         let data: Data = {
-            _id: dbResult._id,
+            _id: dbResult._id.toString(),
             snoringRange: dbResult.snoringRange.toString(),
             respirationRate: dbResult.respirationRate.toString(),
             bodyTemperature: dbResult.bodyTemperature.toString(),
@@ -80,7 +80,7 @@ export class PillowService {
         let result: Data[] = [];
         dbResult.forEach((element) => {
             let data: Data = {
-                _id: element._id,
+                _id: element._id.toString(),
                 snoringRange: element.snoringRange.toString(),
                 respirationRate: element.respirationRate.toString(),
                 bodyTemperature: element.bodyTemperature.toString(),
@@ -102,7 +102,7 @@ export class PillowService {
         let result: Data[] = [];
         dbResult.forEach((element) => {
             let data: Data = {
-                _id: element._id,
+                _id: element._id.toString(),
                 snoringRange: element.snoringRange.toString(),
                 respirationRate: element.respirationRate.toString(),
                 bodyTemperature: element.bodyTemperature.toString(),
@@ -124,7 +124,7 @@ export class PillowService {
         let result: Data[] = [];
         dbResult.forEach((element) => {
             let data: Data = {
-                _id: element._id,
+                _id: element._id.toString(),
                 snoringRange: element.snoringRange.toString(),
                 respirationRate: element.respirationRate.toString(),
                 bodyTemperature: element.bodyTemperature.toString(),
@@ -146,7 +146,7 @@ export class PillowService {
         let result: Data[] = [];
         dbResult.forEach((element) => {
             let data: Data = {
-                _id: element._id,
+                _id: element._id.toString(),
                 snoringRange: element.snoringRange.toString(),
                 respirationRate: element.respirationRate.toString(),
                 bodyTemperature: element.bodyTemperature.toString(),
@@ -166,7 +166,7 @@ export class PillowService {
     async update(newData:Data): Promise<Data> {
         let updated= await this.pillowModel.findByIdAndUpdate(newData._id, newData, { new: true });
         let data: Data = {
-            _id: updated._id,
+            _id: updated._id.toString(),
             snoringRange: updated.snoringRange.toString(),
             respirationRate: updated.respirationRate.toString(),
             bodyTemperature: updated.bodyTemperature.toString(),

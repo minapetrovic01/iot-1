@@ -5,7 +5,7 @@ client = MongoClient('mongodb://localhost:27017/')
 
 db = client['pillowdb']
 
-collection = db['pillow']
+collection = db['pillows']
 
 csv_file_path = 'C:\\Users\\minap\\ELFAK\iot\\archive\\SaYoPillow.csv'
 

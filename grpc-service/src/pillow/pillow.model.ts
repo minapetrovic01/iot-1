@@ -1,10 +1,11 @@
 // pillow.model.ts
 
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, HydratedDocument, Types } from 'mongoose';
 
+export type PillowDocument = HydratedDocument<Pillow>;
 @Schema()
-export class Pillow extends Document {
+export class Pillow {
     @Prop()
     snoringRange: number;
 
