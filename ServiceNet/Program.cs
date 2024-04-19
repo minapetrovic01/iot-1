@@ -11,7 +11,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddGrpcClient<ServiceNet.Pillow.PillowClient>(o =>
 {
-    o.Address = new Uri("https://localhost:5000");
+    o.Address = new Uri("http://localhost:5000");
+    //o.Address = new Uri("http://nest-container:5000");
+
 });
 builder.Services.AddScoped<IPillowService, ServiceNet.Services.PillowService>();
 
