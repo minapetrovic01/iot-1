@@ -32,7 +32,7 @@ export class PillowService {
                 rem: pillow.rem.toString(),
                 hoursSleeping: pillow.hoursSleeping.toString(),
                 heartRate: pillow.heartRate.toString(),
-                stresState: pillow.stresState.toString()
+                stresState: pillow.stresState
             };
             return Promise.resolve(dataToReturn);
         }
@@ -57,7 +57,7 @@ export class PillowService {
                     rem: element.rem.toString(),
                     hoursSleeping: element.hoursSleeping.toString(),
                     heartRate: element.heartRate.toString(),
-                    stresState: element.stresState.toString()
+                    stresState: element.stresState
                 }
                 result.push(data);
             });
@@ -82,7 +82,7 @@ export class PillowService {
                 rem: dbResult.rem.toString(),
                 hoursSleeping: dbResult.hoursSleeping.toString(),
                 heartRate: dbResult.heartRate.toString(),
-                stresState: dbResult.stresState.toString()
+                stresState: dbResult.stresState
             }
             return Promise.resolve(data);
         }
@@ -106,7 +106,7 @@ export class PillowService {
                     rem: element.rem.toString(),
                     hoursSleeping: element.hoursSleeping.toString(),
                     heartRate: element.heartRate.toString(),
-                    stresState: element.stresState.toString()
+                    stresState: element.stresState
                 }
                 result.push(data);
             });
@@ -134,7 +134,7 @@ export class PillowService {
                     rem: element.rem.toString(),
                     hoursSleeping: element.hoursSleeping.toString(),
                     heartRate: element.heartRate.toString(),
-                    stresState: element.stresState.toString()
+                    stresState: element.stresState
                 }
                 result.push(data);
             });
@@ -161,7 +161,7 @@ export class PillowService {
                     rem: element.rem.toString(),
                     hoursSleeping: element.hoursSleeping.toString(),
                     heartRate: element.heartRate.toString(),
-                    stresState: element.stresState.toString()
+                    stresState: element.stresState
                 }
                 result.push(data);
             });
@@ -188,7 +188,7 @@ export class PillowService {
                     rem: element.rem.toString(),
                     hoursSleeping: element.hoursSleeping.toString(),
                     heartRate: element.heartRate.toString(),
-                    stresState: element.stresState.toString()
+                    stresState: element.stresState
                 }
                 result.push(data);
             });
@@ -205,15 +205,15 @@ export class PillowService {
             let updated = await this.pillowModel.findByIdAndUpdate(newData._id, newData, { new: true });
             let data: Data = {
                 _id: updated._id.toString(),
-                snoringRange: updated.snoringRange.toString(),
-                respirationRate: updated.respirationRate.toString(),
-                bodyTemperature: updated.bodyTemperature.toString(),
-                limbMovement: updated.limbMovement.toString(),
-                bloodOxygen: updated.bloodOxygen.toString(),
-                rem: updated.rem.toString(),
-                hoursSleeping: updated.hoursSleeping.toString(),
-                heartRate: updated.heartRate.toString(),
-                stresState: updated.stresState.toString()
+                snoringRange: updated.snoringRange,
+                respirationRate: updated.respirationRate,
+                bodyTemperature: updated.bodyTemperature,
+                limbMovement: updated.limbMovement,
+                bloodOxygen: updated.bloodOxygen,
+                rem: updated.rem,
+                hoursSleeping: updated.hoursSleeping,
+                heartRate: updated.heartRate,
+                stresState: updated.stresState
             }
             return Promise.resolve(data);
         }

@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
+    container_name: pillowdb
+    networks:
+      - BRIDGE
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+    environment:  
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  
+  nestjs:
+    image: nest-service
+    container_name: nest-container_name
+    networks:
+      - BRIDGE
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+
+  servicedotnet:
+    image: servicenet
+    container_name: ServiceNet
+    networks:
+      - BRIDGE
+    ports:
+      - "32772:32772"
+    depends_on:
+      - nestjs
+
+networks:
+  BRIDGE:
+    driver: bridge
+

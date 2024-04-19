@@ -9,11 +9,9 @@ async function bootstrap() {
     options: {
       package: 'pillow',
       protoPath: join(__dirname, './protos/pillow.proto'),
-      //url:'http://localhost:7070'
+      url:'0.0.0.0:5000'
     },
   });
-  //app.enableCors();
-  //await app.listen(3000);
   await app.listen();
 }
 bootstrap();

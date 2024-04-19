@@ -6,42 +6,43 @@ namespace ServiceNet.Services
 {
     public class PillowService : IPillowService
     {
-        private static GrpcChannel _channel;
-        Pillow.PillowClient _client;
+        //private static GrpcChannel _channel;
+        //Pillow.PillowClient _client;
+        private readonly ServiceNet.Pillow.PillowClient _client;
 
-        private static PillowService _instance;
-        private static readonly object _lock = new object();
+        //private static PillowService _instance;
+        //private static readonly object _lock = new object();
 
-        public static PillowService Instance
+        //public static PillowService Instance
+        //{
+        //    get
+        //    {
+        //        lock (_lock)
+        //        {
+        //            if (_instance == null)
+        //            {
+        //                Initialize();
+        //            }
+        //            return _instance;
+        //        }
+        //    }
+        //}
+
+        //public static void Initialize()
+        //{
+        //    lock (_lock)
+        //    {
+        //        if (_instance == null)
+        //        {
+        //            _instance = new PillowService();
+        //        }
+        //    }
+        //}
+
+        public PillowService(ServiceNet.Pillow.PillowClient client)
         {
-            get
-            {
-                lock (_lock)
-                {
-                    if (_instance == null)
-                    {
-                        Initialize();
-                    }
-                    return _instance;
-                }
-            }
-        }
-
-        public static void Initialize()
-        {
-            lock (_lock)
-            {
-                if (_instance == null)
-                {
-                    _instance = new PillowService();
-                }
-            }
-        }
-
-        private PillowService()
-        {
-            _channel = GrpcChannel.ForAddress("http://localhost:5000");
-            _client = new Pillow.PillowClient(_channel);
+            //_channel = GrpcChannel.ForAddress("https://localhost:7070");
+            _client = client;
         }
         public async Task<Empty> AddData([FromBody] DataDto request)
         {
@@ -75,29 +76,29 @@ namespace ServiceNet.Services
             return await _client.GetDatasAsync(request);
         }
 
-        public Task<Datas> GetPillowsByHeartRate([FromBody] ParamsToFind request)
+        public async Task<Datas> GetPillowsByHeartRate([FromBody] ParamsToFind request)
         {
-            throw new NotImplementedException();
+            return await _client.GetPillowsByHeartRateAsync(request);
         }
 
-        public Task<Datas> GetPillowsByRespirationRate([FromBody] ParamsToFind request)
+        public async Task<Datas> GetPillowsByRespirationRate([FromBody] ParamsToFind request)
         {
-            throw new NotImplementedException();
+            return await _client.GetPillowsByRespirationRateAsync(request);
         }
 
-        public Task<Datas> GetPillowsBySnoringRange([FromBody] ParamsToFind request)
+        public async Task<Datas> GetPillowsBySnoringRange([FromBody] ParamsToFind request)
         {
-            throw new NotImplementedException();
+            return await _client.GetPillowsBySnoringRangeAsync(request);
         }
 
-        public Task<Datas> GetPillowsByStressRate([FromBody] ParamToFind request)
+        public async Task<Datas> GetPillowsByStressRate([FromBody] ParamToFind request)
         {
-            throw new NotImplementedException();
+            return await _client.GetPillowsByStressRateAsync(request);
         }
 
-        public Task<Data> UpdateData([FromBody] Data request)
+        public async Task<Data> UpdateData([FromBody] Data request)
         {
-            throw new NotImplementedException();
+            return await _client.UpdateDataAsync(request);
         }
     }
 }

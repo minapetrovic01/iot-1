@@ -2,7 +2,7 @@
 
 
 export interface AvgStressLevel {
-  'avgStressLevel'?: (number | string);
+  'avgStressLevel'?: (number);
 }
 
 export interface AvgStressLevel__Output {
