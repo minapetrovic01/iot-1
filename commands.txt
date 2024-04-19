@@ -1,1 +1,18 @@
+Kompajliranje proto fajla u nest.js-u
 ./node_modules/.bin/proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/protos/ src/protos/pillow.proto
+
+Doker:
+
+docker build -t nest-service
+docker run -p 5000:5000 --name nest-container nest-service
+
+
+docker run -p 27017:27017 --name pillowdb mongodb/mongodb-community-server:latest
+
+docker build -t servicenet 
+docker run -name ServiceNet servicenet
+
+
+docker-compose up
+
+python move_data_to_mongo.py - skrpita za punjenje baze iz csv 

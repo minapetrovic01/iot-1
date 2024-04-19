@@ -16,7 +16,7 @@ services:
   
   nestjs:
     image: nest-service
-    container_name: nest-container_name
+    container_name: nest-container
     networks:
       - BRIDGE
     ports:
