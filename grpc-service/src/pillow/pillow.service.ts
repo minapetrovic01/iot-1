@@ -197,6 +197,7 @@ export class PillowService {
                 }
             }
         ]).exec();
+        console.log(dbResult);
         let data: AvgHeartRate = {
             avgHeartRate: dbResult[0].avgHeartRate.toString()
         }

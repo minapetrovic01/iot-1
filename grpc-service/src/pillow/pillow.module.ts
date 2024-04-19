@@ -6,6 +6,7 @@ import { Pillow, PillowSchema } from './pillow.model';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Pillow.name, schema: PillowSchema }])],
+  // imports: [MongooseModule.forFeature([{ name: "pillowdb", schema: "pillow" }])],
   providers: [PillowService],
   controllers: [PillowController]
 })
