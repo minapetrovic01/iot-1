@@ -1,0 +1,76 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "ServiceREST";
+
+package pillow;
+
+service Pillow{
+    rpc GetDatas(Empty) returns (Datas);
+    rpc GetData(DataID) returns (Data);
+    rpc GetPillowsByStressRate(ParamToFind) returns (Datas);
+    rpc GetPillowsByHeartRate(ParamsToFind) returns (Datas);
+    rpc GetPillowsBySnoringRange(ParamsToFind) returns (Datas);
+    rpc GetPillowsByRespirationRate(ParamsToFind) returns (Datas);
+    rpc AddData(DataDto) returns (Empty);
+    rpc UpdateData(Data) returns (Data);
+    rpc DeleteData(DataID) returns (Empty);
+    rpc GetAvgHeartRate(Empty) returns (AvgHeartRate);
+    rpc GetAvgStressLevel(Empty) returns (AvgStressLevel);
+}
+
+message DataDto {
+  double snoringRange = 1;
+  double respirationRate = 2;
+  double bodyTemperature = 3;
+  double limbMovement = 4;
+  double bloodOxygen = 5;
+  double rem = 6;
+  double hoursSleeping = 7;
+  double heartRate = 8;
+  int32 stresState = 9;
+}
+
+message ParamsToFind{
+    double min = 1;
+    double max = 2;
+}
+
+message ParamToFind{
+    double value = 1;
+}
+
+message DataID{
+    string _id = 1;
+}
+
+message Data {
+    string _id=1;
+    double snoringRange = 2;
+    double respirationRate = 3;
+    double bodyTemperature = 4;
+    double limbMovement = 5;
+    double bloodOxygen = 6;
+    double rem = 7;
+    double hoursSleeping = 8;
+    double heartRate = 9;
+    int32 stresState = 10;
+  }
+
+  message Empty{};
+
+  message Datas{
+    repeated Data datas = 1;
+  }
+  message ResponseCode{
+    int32 status=1;
+    string text=2;
+  }
+
+  message AvgHeartRate{
+    double avgHeartRate=1;
+  }
+
+  message AvgStressLevel{
+    int32 avgStressLevel=1;
+  }

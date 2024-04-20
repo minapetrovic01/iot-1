@@ -9,8 +9,8 @@ async function bootstrap() {
     options: {
       package: 'pillow',
       protoPath: join(__dirname, './protos/pillow.proto'),
-      //url:'0.0.0.0:5000'
-      //url:'localhost:5001'
+      //url:'0.0.0.0:5001'
+      url:'localhost:5001'
     },
   });
   await app.listen();
