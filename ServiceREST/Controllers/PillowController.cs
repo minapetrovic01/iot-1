@@ -136,7 +136,7 @@ namespace ServiceREST.Controllers
             }
         }
 
-        [HttpPost("GetPillowsBySnoringRange/{min}/{max}")]
+        [HttpGet("GetPillowsBySnoringRange/{min}/{max}")]
         public async Task<IActionResult> GetPillowsBySnoringRange(int min, int max)
         {
             try
@@ -151,7 +151,7 @@ namespace ServiceREST.Controllers
             }
         }
 
-        [HttpPost("GetPillowsByStressRate/{value}")]
+        [HttpGet("GetPillowsByStressRate/{value}")]
         public async Task<IActionResult> GetPillowsByStressRate(int value)
         {
             try

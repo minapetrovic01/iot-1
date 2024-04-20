@@ -93,7 +93,12 @@ export class PillowService {
 
     async findByStressRate(stressRate: ParamToFind): Promise<Datas> {
         try {
-            let dbResult = await this.pillowModel.find({ stresState: stressRate.value }).exec();
+            let strval:number;
+            if(typeof stressRate.value === 'string')
+                strval = parseInt(stressRate.value);
+            else
+                strval = stressRate.value;
+            let dbResult = await this.pillowModel.find({ stresState: strval }).exec();
             let result: Data[] = [];
             dbResult.forEach((element) => {
                 let data: Data = {
@@ -121,7 +126,23 @@ export class PillowService {
 
     async findBySnoringRange(par: ParamsToFind): Promise<Datas> {
         try {
-            let dbResult = await this.pillowModel.find({ snoringRange: { $gte: par.min, $lte: par.max } }).exec();
+            //let dbResult = await this.pillowModel.find({ snoringRange: { $gte: par.min, $lte: par.max } }).exec();
+            var min: number;
+            var max: number;
+            const allPillows = await this.pillowModel.find().exec();
+            if(typeof par.min === 'string')
+                min = parseInt(par.min);
+            else
+                min = par.min;
+            if(typeof par.max === 'string')
+                max = parseInt(par.max);
+            else
+                max = par.max;
+
+            // Filter manually based on respirationRate
+            const dbResult = allPillows.filter(pillow => 
+                pillow.respirationRate >= min && pillow.respirationRate <= max
+            );
             let result: Data[] = [];
             dbResult.forEach((element) => {
                 let data: Data = {
@@ -148,7 +169,25 @@ export class PillowService {
 
     async findByRespirationRate(par: ParamsToFind): Promise<Datas> {
         try {
-            let dbResult = await this.pillowModel.find({ respirationRate: { $gte: par.min, $lte: par.max } }).exec();
+            //let dbResult = await this.pillowModel.find({ respirationRate: { $gte: par.min, $lte: par.max } }).exec();
+            var min: number;
+            var max: number;
+            const allPillows = await this.pillowModel.find().exec();
+            if(typeof par.min === 'string')
+                min = parseInt(par.min);
+            else
+                min = par.min;
+            if(typeof par.max === 'string')
+                max = parseInt(par.max);
+            else
+                max = par.max;
+
+            // Filter manually based on respirationRate
+            const dbResult = allPillows.filter(pillow => 
+                pillow.respirationRate >= min && pillow.respirationRate <= max
+            );
+            
+            console.log(dbResult);
             let result: Data[] = [];
             dbResult.forEach((element) => {
                 let data: Data = {
@@ -175,7 +214,23 @@ export class PillowService {
 
     async findByHeartRate(par: ParamsToFind): Promise<Datas> {
         try {
-            let dbResult = await this.pillowModel.find({ heartRate: { $gte: par.min, $lte: par.max } }).exec();
+            //let dbResult = await this.pillowModel.find({ heartRate: { $gte: par.min, $lte: par.max } }).exec();
+            var min: number;
+            var max: number;
+            const allPillows = await this.pillowModel.find().exec();
+            if(typeof par.min === 'string')
+                min = parseInt(par.min);
+            else
+                min = par.min;
+            if(typeof par.max === 'string')
+                max = parseInt(par.max);
+            else
+                max = par.max;
+
+            // Filter manually based on respirationRate
+            const dbResult = allPillows.filter(pillow => 
+                pillow.respirationRate >= min && pillow.respirationRate <= max
+            );
             let result: Data[] = [];
             dbResult.forEach((element) => {
                 let data: Data = {
