@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddGrpcClient<ServiceREST.Pillow.PillowClient>(o =>
 {
     o.Address = new Uri("http://localhost:5001");
-   // o.Address = new Uri("http://nest-container2:5001");
+    //o.Address = new Uri("http://nest-container3:5001");
 
 });
 builder.Services.AddScoped<IPillowService, ServiceREST.Services.PillowService>();
